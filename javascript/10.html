@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Frequency</title>
+    <script>
+        function charFreq(text){
+            var freq={};
+            for(var i = 0;i<text.length;i++){
+                var char = text[i];
+                if(freq[char]){
+                    freq[char]++;
+                }else{
+                    freq[char]=1;
+                }
+            }
+            return freq;
+        }
+
+        function displayResult(){
+            var input = document.getElementById('text').value;
+            var freqCount = charFreq(input);
+            document.getElementById('result').textContent = JSON.stringify(freqCount);         }
+    </script>
+</head>
+<body>
+    <h1>Character Frequency Listing</h1>
+    <p>Enter a string below to calculate the frequency of each character:</p>
+    <input type="text" id="text" />
+    <button onclick="displayResult()">Calculate</button>
+    <p><strong>Frequency Listing:</strong></p>
+    <p id="result"></p>
+</body>
+</html>

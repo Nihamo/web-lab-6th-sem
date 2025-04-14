@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISC Questionnaire</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+        h1 {
+            font-size: 24px;
+        }
+        form {
+            width: 600px;
+            border: 1px solid black;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        input[type="text"], input[type="password"], textarea {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+        }
+        .inline {
+            display: inline-block;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<center>
+    <h1>ISC Questionnaire</h1>
+
+    <form>
+        <label for="student_name">Student Name:</label>
+        <input type="text" id="student_name" name="student_name" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <label>Preferred Courses:</label>
+        <div>
+            <input type="checkbox" id="networks" name="courses" value="Networks">
+            <label for="networks" class="inline">Networks</label>
+            
+            <input type="checkbox" id="web_programming" name="courses" value="Web Programming">
+            <label for="web_programming" class="inline">Web Programming</label>
+            
+            <input type="checkbox" id="data_structures" name="courses" value="Data Structures">
+            <label for="data_structures" class="inline">Data Structures</label>
+            
+            <input type="checkbox" id="os" name="courses" value="OS">
+            <label for="os" class="inline">OS</label>
+        </div><br><br>
+
+        <label>How many hours you study every day?</label>
+        <div>
+            <input type="radio" id="1-3_hours" name="study_hours" value="1-3 hours">
+            <label for="1-3_hours" class="inline">1-3 hours</label>
+
+            <input type="radio" id="4-5_hours" name="study_hours" value="4-5 hours">
+            <label for="4-5_hours" class="inline">4-5 hours</label>
+
+            <input type="radio" id="more_than_6" name="study_hours" value="more than 6 hours">
+            <label for="more_than_6" class="inline">more than 6 hours</label>
+        </div><br><br>
+
+        <label for="rating">Rate ISC Department:</label>
+        <select id="rating" name="rating">
+            <option value="Excellent">Excellent</option>
+            <option value="Good">Good</option>
+            <option value="Average">Average</option>
+            <option value="Poor">Poor</option>
+        </select><br><br>
+
+        <label for="comments">Further Comments:</label>
+        <textarea id="comments" name="comments" rows="4"></textarea>
+
+        <div class="buttons">
+            <input type="reset" value="Reset">
+            <input type="submit" value="Submit Form">
+        </div>
+    </form>
+</center>
+</body>
+</html>

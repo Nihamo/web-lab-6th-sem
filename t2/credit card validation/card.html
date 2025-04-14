@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Credit Card Validator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    label, input, button {
+      display: block;
+      margin: 10px 0;
+    }
+    .output {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+    .valid { color: green; }
+    .invalid { color: red; }
+  </style>
+</head>
+<body>
+
+  <h1>💳 Credit Card Validator</h1>
+
+  <label for="cardNumber">Enter Credit Card Number:</label>
+  <input type="text" id="cardNumber" placeholder="e.g. 9999-9999-8888-0000" />
+
+  <button onclick="checkCard()">Validate</button>
+
+  <div id="result" class="output"></div>
+
+  <script src="card.js"></script>
+
+</body>
+</html>

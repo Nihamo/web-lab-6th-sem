@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Word Guessing Game</title>
+  <link rel="stylesheet" href="gstyle.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Word Guessing Game 🎯</h1>
+    <p id="displayWord">_ _ _</p>
+    <p>Guess a letter:</p>
+    <input type="text" id="letterInput" maxlength="1" />
+    <button onclick="guessLetter()">Guess</button>
+    <p id="message"></p>
+    <p id="reward"></p>
+    <p id="hangmanStatus"></p>
+  </div>
+  <script src="gscript.js"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Name Sorter</title>
+</head>
+<body>
+
+  <h3>Enter names below:</h3>
+
+  <input type="text" id="nameInput">
+  <button onclick="addName()">Add</button>
+  <button onclick="showList()">Finish</button>
+
+  <ol id="nameList"></ol>
+
+  <script>
+    var names = [];
+
+    function addName() {
+      var name = document.getElementById("nameInput").value;
+      if (name.trim() !== "") {
+        names.push(name.trim());
+        document.getElementById("nameInput").value = ""; // clear input
+      }
+    }
+
+    function showList() {
+      names.sort();
+      var list = document.getElementById("nameList");
+      list.innerHTML = ""; // clear old list
+
+      for (var i = 0; i < names.length; i++) {
+        list.innerHTML += "<li>" + names[i] + "</li>";
+      }
+    }
+  </script>
+
+</body>
+</html>

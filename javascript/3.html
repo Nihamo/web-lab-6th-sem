@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vowel/Consonant</title>
+</head>
+<script>
+    function isVowel(s){
+        s=s.toLowerCase();
+        return ['a','e','i','o','u'].includes(s);
+    }
+
+    function displayResult(){
+        const str = document.getElementById('char').value;
+        if(str.length!==1){
+            document.getElementById('res').textContent = "please enter character of length 1";
+            return;
+        }
+        const res = isVowel(str) ? "It is a vowel!" : "It is not a vowel.";
+        document.getElementById('res').textContent = res;
+    }   
+</script>
+<body>
+    <label for="char">enter a character: </label>
+    <input type="text" id="char" required><br>
+    <button onclick="displayResult()">check</button>
+    <p id="res"></p>
+</body>
+</html>

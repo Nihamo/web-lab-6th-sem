@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Filter Long Words</title>
+    <script>
+        function filterLongWords(words, i) {
+            var result = [];
+            for (var j = 0; j < words.length; j++) {
+                if (words[j].length > i) {
+                    result.push(words[j]); 
+                }
+            }
+
+            return result;
+        }
+
+        function displayFilteredWords() {
+            var input = document.getElementById('wordsInput').value;
+            var threshold = document.getElementById('thresholdInput').value; 
+            var words = input.split(','); 
+            var filteredWords = filterLongWords(words, parseInt(threshold)); 
+            document.getElementById('result').textContent = filteredWords.join(', ');
+        }
+    </script>
+</head>
+<body>
+    <h1>Filter Long Words</h1>
+    <p>Enter words separated by commas:</p>
+    <input type="text" id="wordsInput" /><br>
+    <p>Enter the threshold length:</p>
+    <input type="number" id="thresholdInput" /><br>
+    <button onclick="displayFilteredWords()">Filter</button>
+    <p><strong>Filtered Words:</strong></p>
+    <p id="result"></p>
+</body>
+</html>

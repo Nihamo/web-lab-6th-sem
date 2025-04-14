@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rollover Image Example</title>
+</head>
+<body>
+
+<h2>Hover over the image</h2>
+
+<img 
+  src="img1.jpg" 
+  id="rolloverImage" 
+  width="300" 
+  height="200"
+  alt="Rollover Image"
+/>
+
+<script>
+  // Get the image element
+  var image = document.getElementById("rolloverImage");
+
+  // Store the original and hover image sources
+  var originalImage = "img1.jpg";
+  var hoverImage = "img2.jpg";
+
+  // Add mouseover event to change image
+  image.onmouseover = function() {
+    image.src = hoverImage;
+  }
+
+  // Add mouseout event to revert back
+  image.onmouseout = function() {
+    image.src = originalImage;
+  }
+</script>
+
+</body>
+</html>

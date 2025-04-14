@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>max function</title>
+    <script>
+        function max(n1,n2){
+            if(n1>n2){
+                return n1;
+            }else{
+                return n2;
+            }
+        }
+
+        function displayResult(){
+            var num1 = parseInt(document.getElementById('n1').value);
+            var num2 = parseInt(document.getElementById('n2').value);
+            var res = max(num1,num2);
+            document.getElementById('res').innerHTML = "the largest no. is "+res;
+        }
+    </script>
+</head>
+<body>
+    <h2>largest no. of two</h2>
+    <label for = 'n1'>enter the 1st no.: </label>
+    <input type="number" id="n1" required><br>
+    <label for="n2">enter the 2nd no.: </label>
+    <input type ="number" id="n2" required><br>
+    <button onclick="displayResult()">Find Largest</button>
+    <p id="res"></p>
+</body>
+</html>

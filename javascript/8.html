@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Longest Word</title>
+</head>
+<script>
+    function LongestWord(words){
+        var maxLength = 0;
+        for(var i=0;i<words.length;i++){
+            if(words[i].length>maxLength){
+                maxLength = words[i].length;
+            }
+        }
+        return maxLength;
+    }
+
+    function displayResult(){
+        var input = document.getElementById('wordsInput').value;
+            var words = input.split(','); 
+            var longestWordLength = LongestWord(words);
+            document.getElementById('result').textContent = longestWordLength;
+    }
+</script>
+<body>
+    <h1>Find Longest Word in an Array</h1>
+    <p>Enter words separated by commas:</p>
+    <input type="text" id="wordsInput" />
+    <button onclick="displayResult()">Find</button>
+    <p><strong>Length of Longest Word:</strong></p>
+    <p id="result"></p> 
+</body>
+</html>

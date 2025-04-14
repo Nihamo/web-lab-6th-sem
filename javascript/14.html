@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registration Form</title>
+
+  <script>
+    function validateForm() {
+      var name = document.getElementById("name").value.trim();
+      var username = document.getElementById("username").value.trim();
+      var password = document.getElementById("password").value;
+      var confirmPassword = document.getElementById("confirmPassword").value;
+      var year = document.getElementById("year").value.trim();
+      var email = document.getElementById("email").value.trim();
+      var terms = document.getElementById("terms").checked;
+      var message = "";
+
+      // Check empty fields
+      if (username === "" || password === "" || confirmPassword === "" || email === "") {
+        message += "Username, password, confirm password, and email must not be empty.<br>";
+      }
+
+      // Password match check
+      if (password !== confirmPassword) {
+        message += "Passwords do not match.<br>";
+      }
+
+      // Email format check
+      var emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      if (!emailPattern.test(email)) {
+        message += "Invalid email format.<br>";
+      }
+
+      // Year of birth check
+      if (!/^\d{4}$/.test(year) || year < 1900 || year > 2000) {
+        message += "Year of birth must be a 4-digit number between 1900 and 2000.<br>";
+      }
+
+      // Terms and conditions check
+      if (!terms) {
+        message += "You must agree to the terms and conditions.<br>";
+      }
+
+      // Show message or success
+      var result = document.getElementById("result");
+      if (message !== "") {
+        result.innerHTML = "<span style='color:red'>" + message + "</span>";
+        return false;
+      } else {
+        result.innerHTML = "<span style='color:green'>Registration successful!</span>";
+        return false; // Prevent form submission for now
+      }
+    }
+  </script>
+
+</head>
+<body>
+
+  <h2>Registration Form</h2>
+
+  <form onsubmit="return validateForm()">
+    <label>Name:</label><br>
+    <input type="text" id="name"><br><br>
+
+    <label>Username:</label><br>
+    <input type="text" id="username"><br><br>
+
+    <label>Password:</label><br>
+    <input type="password" id="password"><br><br>
+
+    <label>Confirm Password:</label><br>
+    <input type="password" id="confirmPassword"><br><br>
+
+    <label>Year of Birth:</label><br>
+    <input type="text" id="year"><br><br>
+
+    <label>Email:</label><br>
+    <input type="text" id="email"><br><br>
+
+    <input type="checkbox" id="terms"> I agree to the terms and conditions<br><br>
+
+    <button type="submit">Register</button>
+  </form>
+
+  <p id="result"></p>
+
+</body>
+</html>

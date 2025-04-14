@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Local vs Global Variable</title>
+</head>
+<body>
+
+  <h2>Local vs Global Variable</h2>
+  <button onclick="showName1()">Click Me to check the local name</button><br><br>
+  <button onclick="showName2()">Click Me to check the global name</button>
+
+  <p id="output"></p>
+
+  <script>
+    var name = "this is Global Name"; // This is a global variable
+
+    function showName1() {
+      var name = "Local Name from showName()"; // This is a local variable (same name as global)
+      document.getElementById("output").innerText = "Name is: " + name;
+    }
+
+    function showName2() {
+      document.getElementById("output").innerText = "Name is: " + name; //this will print the global one
+    }
+  </script>
+
+</body>
+</html>

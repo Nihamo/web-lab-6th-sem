@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English to Swedish Translator</title>
+    <script>
+        var lexicon = {
+            "merry": "god",
+            "christmas": "jul",
+            "and": "och",
+            "happy": "gott",
+            "new": "nytt",
+            "year": "år"
+        };
+
+        function translateToSwedish(sentence) {
+            var words = sentence.toLowerCase().split(" ");  
+            var translatedWords = [];
+
+            for (var i = 0; i < words.length; i++) {
+                var word = words[i];
+                if (lexicon[word]) {
+                    translatedWords.push(lexicon[word]);
+                } else {
+                    translatedWords.push(word);
+                }
+            }
+
+            return translatedWords.join(" "); 
+        }
+
+        function displayTranslation() {
+            var inputSentence = document.getElementById('inputSentence').value;
+            var translatedSentence = translateToSwedish(inputSentence);
+            document.getElementById('result').innerHTML = "Translated Sentence: " + translatedSentence;
+        }
+    </script>
+</head>
+<body>
+    <h2>English to Swedish Christmas Card Translator</h2>
+    <label for="inputSentence">Enter your English sentence:</label>
+    <input type="text" id="inputSentence" placeholder="e.g., Merry Christmas and Happy New Year" required><br><br>
+    <button onclick="displayTranslation()">Translate to Swedish</button>
+    <p id="result"></p>
+
+</body>
+</html>

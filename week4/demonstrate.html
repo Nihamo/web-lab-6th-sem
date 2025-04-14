@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>smallest or square function</title>
+</head>
+<body>
+    <h1>smallest od square function</h1>
+    <p>enter 2 numbers to find the smallest, or the square if they are equal</p>
+
+    <form id="numberForm" onsubmit="return displayResult(event)">
+        <label for="number1">number1: </label>
+        <input type="number" id="number1" required><br><br>
+        <label for="number2">number2: </label>
+        <input type="number" id="number2" required><br><br>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="output"></div>
+
+    <script>
+        // Global variable to store the result
+        let globalResult;
+
+        // Function to find the smallest of two numbers or return the square if they are equal
+        function smallestOrSquare(num1, num2) {
+            // Local variables
+            let result;
+            
+            if (num1 === num2) {
+                result = num1 * num1; // Calculate the square if numbers are equal
+            } else {
+                result = num1 < num2 ? num1 : num2; // Return the smallest of the two
+            }
+
+            globalResult = result; // Storing the result in a global variable
+            return result;
+        }
+
+        // Function to handle form submission and display the result
+        function displayResult(event) {
+            event.preventDefault(); // Prevent the page from refreshing
+            
+            // Retrieve user inputs
+            const number1 = parseFloat(document.getElementById("number1").value);
+            const number2 = parseFloat(document.getElementById("number2").value);
+            
+            // Call the smallestOrSquare function
+            const result = smallestOrSquare(number1, number2);
+            
+            // Display the result
+            const outputDiv = document.getElementById("output");
+            outputDiv.innerHTML = `<p>The result is: <strong>${result}</strong></p>
+             <p>Global Result (from global scope): <strong>${globalResult}</strong></p>`;
+            
+            // Demonstrating access to the global variable
+            console.log("Global Result:", globalResult);
+        }
+    </script>
+</body>
+</html>

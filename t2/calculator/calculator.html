@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Calculator</title>
+  <link rel="stylesheet" href="calc.css">
+</head>
+<body>
+  <h1>The Calculator</h1>
+  <div class="calculator">
+    <label for="inputNumber">Enter a number:</label>
+    <input type="number" id="inputNumber" placeholder="E.g., 5">
+
+    <div>
+      <button onclick="runSquare()">Square</button>
+      <button onclick="runHalf()">Half</button>
+      <button onclick="runArea()">Area of Circle</button>
+      <button onclick="runCombined()">Run All Steps</button>
+    </div>
+
+    <div style="margin-top: 20px;">
+      <label for="inputPercent1">Percent of: </label>
+      <input type="number" id="inputPercent1" placeholder="E.g., 2">
+      <input type="number" id="inputPercent2" placeholder="E.g., 4">
+      <button onclick="runPercent()">Calculate %</button>
+    </div>
+
+    <div class="output" id="outputArea">Result will appear here...</div>
+  </div>
+
+  <script src="calcscript.js"></script>
+</body>
+</html>

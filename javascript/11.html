@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="num1">enter the 1st number: </label>
+    <input type="number" id="num1"><br><br>
+    <label for="num2">enter the 2nd number: </label>
+    <input type="number" id="num2"><br><br>
+    <select id="operation">
+        <option value="" disabled selected>Choose an operation</option>
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+    </select><br><br>
+    <button onclick="calculate()">calculate</button>
+    <p><strong>Result:</strong></p>
+    <p id="result"></p>
+</body>
+<script>
+    function calculate(){
+        var n1 = parseFloat(document.getElementById("num1").value);
+        var n2 = parseFloat(document.getElementById("num2").value);
+        var op = document.getElementById("operation");
+        var result;
+
+        if(isNaN(n1) || isNaN(n2)){
+            result = "please enter valid numbers";
+        }else{
+            switch(op.value){
+                case "+":
+                    result = n1 + n2;
+                    break;
+                case "-":
+                    result = n1 - n2;
+                    break;
+                case "*":
+                    result = n1 * n2;
+                    break;
+                case "/":
+                    if(n2===0){
+                        result = "can't be divided by zero";
+                    }else{
+                    result = n1 / n2;}
+                    break;
+            }
+        }
+        document.getElementById("result").innerText = result;
+    }
+</script>
+</html>

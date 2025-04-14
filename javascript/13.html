@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Random Number Average</title>
+
+  <script>
+    var count = prompt("How many random numbers do you want to generate?");
+    count = parseInt(count);
+
+    if (isNaN(count) || count <= 0) {
+      alert("Please enter a valid positive number.");
+    } else {
+      var numbers = [];
+      var sum = 0;
+
+      for (var i = 0; i < count; i++) {
+        var num = Math.floor(Math.random() * 100) + 1; // random between 1–100
+        numbers.push(num);
+        sum += num;
+      }
+
+      var average = sum / count;
+      alert("Generated Numbers: " + numbers.join(", "));
+      alert("Average: " + average.toFixed(2));
+    }
+  </script>
+
+</head>
+<body>
+  <h2>Check the alerts for the random numbers and their average!</h2>
+</body>
+</html>

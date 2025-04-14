@@ -1,0 +1,46 @@
+/* This sets the background color and font for the whole page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff; /* light blue background */
+    padding: 40px;
+    text-align: center;
+  }
+  
+  /* Styling for the main heading */
+  h1 {
+    color: #333; /* dark gray */
+  }
+  
+  /* Input boxes style */
+  input[type="text"] {
+    padding: 10px;
+    margin: 10px;
+    width: 150px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Button style */
+  button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #861398; /* green */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Change button color on hover */
+  button:hover {
+    background-color: #861398;
+  }
+  
+  /* Result text style */
+  #result {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #444;
+  }
+  

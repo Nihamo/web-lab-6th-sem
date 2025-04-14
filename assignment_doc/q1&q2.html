@@ -1,0 +1,338 @@
+USN - 1MS22CS090
+Name : Nihareeka Mohanty
+Scope is the visibility and lifetime of variables. 
+Global variables are accessible everywhere, while local ones exist only within functions. 
+Hoisting allows variables declared with var to be accessed before their declaration, but they return undefined. 
+Block scope variables declared with 'let' or 'const' inside a block are only accessible within that block.  
+Function scope variables declared with 'var' are limited to the function they’re declared in, regardless of block boundaries.  
+Lexical scope is where inner functions can access variables from their outer functions due to the nested in code definition.
+
+Q1.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz App</title>
+  <style>
+    body {
+      font-family: 'Verdana', sans-serif;
+      background: linear-gradient(to right, #74ebd5, #acb6e5);
+      color: #222;
+      padding: 40px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3em;
+      color: #1f2f46;
+      margin-bottom: 30px;
+    }
+
+    .button-group {
+      margin-bottom: 25px;
+    }
+
+    button {
+      padding: 12px 30px;
+      margin: 10px;
+      font-size: 16px;
+      background-color: #4a69bd;
+      border: none;
+      border-radius: 10px;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #1e3799;
+    }
+
+    #result {
+      background-color: #fff;
+      padding: 25px;
+      margin-top: 30px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 18px;
+      color: #1d1d1d;
+    }
+  </style>
+</head>
+<body>
+  <h1>Let's Quiz!</h1>
+  <div class="button-group">
+    <button onclick="startQuiz()">Start Quiz</button>
+    <button onclick="reviewScore()">Review Scope</button>
+  </div>
+  <div id="result">Your score will appear here.</div>
+
+  <script>
+    var score = 0;
+
+    function questionOne() {
+      let answer = prompt("Q1: Capital of France?");
+      if (answer?.toLowerCase() === "paris") {
+        alert("Correct!");
+        score++;
+      } else alert("Wrong! It's Paris.");
+      var localScore = 1;
+    }
+
+    const questionTwo = function () {
+      let answer = prompt("Q2: What is 2 + 2?");
+      if (parseInt(answer) === 4) {
+        alert("Correct!");
+        score++;
+      } else alert("Wrong! It's 4.");
+    };
+
+    function questionThree() {
+      console.log("Before var:", typeof demoVar);
+      var demoVar = "hoisting example";
+      console.log("After var:", demoVar);
+
+      let answer = prompt("Q3: JS runs on?");
+      if (["both", "browser"].includes(answer?.toLowerCase())) {
+        alert("Correct!");
+        score++;
+      } else alert("Wrong! It runs on both.");
+    }
+
+    const questionFour = function () {
+      let answer = prompt("Q4: HTML tag for biggest heading?");
+      if (answer?.toLowerCase() === "h1") {
+        alert("Correct!");
+        score++;
+      } else alert("Wrong! It's <h1>.");
+    };
+
+    function questionFive() {
+      let answer = prompt("Q5: typeof null?");
+      if (answer?.toLowerCase() === "object") {
+        alert("Correct!");
+        score++;
+      } else alert("Wrong! It's 'object'.");
+    }
+
+    const questionSix = function () {
+      let answer = prompt("Q6: CSS property for text color?");
+      if (answer?.toLowerCase() === "color") {
+        alert("Correct!");
+        score++;
+      } else alert("Wrong! It's 'color'.");
+    };
+
+    function questionSeven() {
+      let answer = prompt("Q7: Who created JS?");
+      if (answer?.toLowerCase().includes("brendan eich")) {
+        alert("Correct!");
+        score++;
+      } else alert("Wrong! Brendan Eich.");
+    }
+
+    const questionEight = function () {
+      let answer = prompt("Q8: Keyword for constant?");
+      if (answer?.toLowerCase() === "const") {
+        alert("Correct!");
+        score++;
+      } else alert("Wrong! It's 'const'.");
+    };
+
+    function questionNine() {
+      let answer = prompt("Q9: HTML stands for?");
+      if (answer?.toLowerCase().includes("hypertext")) {
+        alert("Correct!");
+        score++;
+      } else alert("Wrong! It's HyperText Markup Language.");
+    }
+
+    const questionTen = function () {
+      let answer = prompt("Q10: JS file extension?");
+      if (answer?.toLowerCase() === ".js") {
+        alert("Correct!");
+        score++;
+      } else alert("Wrong! It's '.js'.");
+    };
+
+    function startQuiz() {
+      score = 0;
+      questionOne();
+      questionTwo();
+      questionThree();
+      questionFour();
+      questionFive();
+      questionSix();
+      questionSeven();
+      questionEight();
+      questionNine();
+      questionTen();
+      document.getElementById("result").innerText = `Final Score: ${score} / 10`;
+    }
+
+    function reviewScore() {
+      try {
+        alert("Local score: " + localScore);
+      } catch (e) {
+        alert("Cannot access 'localScore' — it's function scoped.");
+      }
+    }
+  </script>
+</body>
+</html>
+
+
+Q2. 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Evaluation</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f5f9;
+      padding: 40px;
+    }
+
+    h2 {
+      color: #34495e;
+      font-size: 2em;
+      text-align: center;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px;
+      width: 100%;
+      background-color: #16a085;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #117864;
+    }
+
+    pre {
+      margin-top: 25px;
+      background-color: #ecf0f1;
+      padding: 20px;
+      border-radius: 10px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Student Activity Evaluation</h2>
+    <label>Student Name:</label>
+    <input type="text" id="studentNameInput" placeholder="e.g. John Doe">
+
+    <label>Activity Scores (comma-separated):</label>
+    <input type="text" id="scoresInput" placeholder="e.g., 10,20,15">
+
+    <button onclick="processEvaluation()">Evaluate</button>
+
+    <pre id="output">Result will appear here...</pre>
+  </div>
+
+  <script>
+    var studentName = "";
+    var activityScores = [];
+
+    function calculateTotal(scores) {
+      let total = 0;
+      for (let score of scores) total += score;
+      return total;
+    }
+
+    const calculateAverage = scores => calculateTotal(scores) / scores.length;
+
+    const evaluateRank = score =>
+      score > 40 ? "Star Performer" :
+      score >= 30 ? "Active" : "Inactive";
+
+    function processEvaluation() {
+      studentName = document.getElementById("studentNameInput").value;
+      const scoresRaw = document.getElementById("scoresInput").value;
+
+      if (!studentName || !scoresRaw) {
+        alert("Please fill in both fields.");
+        return;
+      }
+
+      activityScores = scoresRaw.split(",").map(n => parseInt(n.trim()));
+      const total = calculateTotal(activityScores);
+      const average = calculateAverage(activityScores);
+      const rank = evaluateRank(total);
+
+      let hoistResult;
+      try {
+        hoistResult = category;
+      } catch (err) {
+        hoistResult = err.message;
+      }
+
+      var category = "This is hoisting";
+
+      if (true) {
+        var testVar = "var inside block";
+      }
+
+      function generateReport() {
+        const message = rank.includes("Star") ? "Amazing participation!" :
+                        rank.includes("Active") ? "Good, keep going!" : "Try to do more!";
+        return `🎓 ${studentName}\nRank: ${rank}\nFeedback: ${message}`;
+      }
+
+      const output = `
+Student: ${studentName}
+Scores: [${activityScores.join(", ")}]
+Total: ${total}
+Average: ${average.toFixed(2)}
+Rank: ${rank}
+
+${generateReport()}
+
+Hoisting test (category): ${hoistResult}
+Block-scope test (var): ${testVar}
+`;
+
+      document.getElementById("output").textContent = output;
+    }
+  </script>
+
+</body>
+</html>

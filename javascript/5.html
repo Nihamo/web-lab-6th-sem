@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sum and Multiply Functions</title>
+    <script>
+        function sum(arr) {
+            var total = 0;
+            for (var i = 0; i < arr.length; i++) {
+                total += arr[i];
+            }
+            return total;
+        }
+
+        function multiply(arr) {
+            var total = 1;
+            for (var i = 0; i < arr.length; i++) {
+                total *= arr[i];
+            }
+            return total;
+        }
+
+        function displayResults() {
+            var inputArray = document.getElementById('numbers').value.split(',').map(function(item) {
+                return parseInt(item, 10); 
+            });
+
+            var sumResult = sum(inputArray);
+            var multiplyResult = multiply(inputArray);
+
+            document.getElementById('sumResult').innerHTML = "Sum of the numbers: " + sumResult;
+            document.getElementById('multiplyResult').innerHTML = "Product of the numbers: " + multiplyResult;
+        }
+    </script>
+</head>
+<body>
+    <h2>Sum and Multiply Array of Numbers</h2>
+    <label for="numbers">Enter numbers (comma separated):</label>
+    <input type="text" id="numbers" placeholder="e.g. 1,2,3,4" required><br><br>
+    <button onclick="displayResults()">Calculate Sum and Multiply</button>
+    <p id="sumResult"></p>
+    <p id="multiplyResult"></p>
+
+</body>
+</html>

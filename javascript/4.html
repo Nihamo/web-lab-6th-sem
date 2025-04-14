@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rövarspråket Translator</title>
+</head>
+<body>
+    <h1>Rövarspråket Translator</h1>
+    <p>Enter text to translate into "rövarspråket":</p>
+    <textarea id="inputText" rows="4" cols="50"></textarea><br>
+    <button onclick="translateText()">Translate</button>
+    <p><strong>Translated Text:</strong></p>
+    <p id="result"></p>
+
+    <script>
+        function translate(text) {
+            let result = '';
+            for (const char of text) {
+                if (/[bcdfghjklmnpqrstvwxyz]/i.test(char)) {
+                    result += char + 'o' + char;
+                } else {
+                    result += char; 
+                }
+            }
+            return result;
+        }
+
+        function translateText() {
+            const inputText = document.getElementById('inputText').value;
+            const translated = translate(inputText);
+            document.getElementById('result').textContent = translated;
+        }
+    </script>
+</body>
+</html>

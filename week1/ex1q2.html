@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Form</title>
+</head>
+<body>
+    <form action="#" autocomplete="on">
+        <fieldset>
+            <legend>Customer Info</legend>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" autofocus required>
+            <br>
+            <label for="telephone">Telephone:</label>
+            <input type="tel" id="telephone" name="telephone" placeholder="Enter your phone number"
+                pattern="^\d{10}$" required>
+            <small>Enter a 10-digit phone number (e.g., 1234567890)</small>
+            <br>
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email address" required multiple>
+            <br>
+        </fieldset>
+        <fieldset>
+            <legend>Books</legend>
+            <label for="books">Choose a book:</label>
+            <input list="books-list" id="books" name="books">
+            <datalist id="books-list">
+                <option value="The Great Gatsby">
+                <option value="To Kill a Mockingbird">
+                <option value="1984">
+                <option value="Pride and Prejudice">
+                <option value="The Catcher in the Rye">
+            </datalist>
+            <br>
+            <label for="quantity">Quantity (Max 5):</label>
+            <input type="number" id="quantity" name="quantity" min="1" max="5" required>
+            <br>
+        </fieldset>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

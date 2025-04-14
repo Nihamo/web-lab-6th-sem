@@ -1,0 +1,31 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f0f0f0;
+    text-align: center;
+  }
+  
+  .container {
+    background: white;
+    padding: 20px;
+    margin: 50px auto;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0 0 10px #aaa;
+  }
+  
+  #displayWord {
+    font-size: 2em;
+    letter-spacing: 10px;
+  }
+  
+  input {
+    padding: 5px;
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+  
+  button {
+    padding: 6px 12px;
+    margin-left: 5px;
+  }
+  
