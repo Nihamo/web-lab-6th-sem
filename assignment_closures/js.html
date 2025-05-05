@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Closure Examples</title>
+  <style>
+    body {
+      font-family: monospace;
+      background-color: #f0f0f0;
+      padding: 30px;
+      color: #333;
+    }
+    h2 {
+      color: #222;
+    }
+    pre {
+      background-color: #272822;
+      color: #f8f8f2;
+      padding: 20px;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+    .output {
+      background-color: #fff;
+      border-left: 5px solid #4caf50;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 6px;
+      font-family: monospace;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Nihareeka Mohanty</h2>
+
+  <p>
+    <strong>Closure</strong> is a function that retains access to its lexical scope even after the outer function has finished executing.
+    This means variables defined in an outer function can still be accessed by an inner function, allowing data to be preserved privately.
+    Closures are useful for creating encapsulated, reusable code modules. They help in maintaining data privacy and avoiding global variable pollution,
+    making the code more organized, modular, and secure.
+  </p>
+
+  <h2>JavaScript Code:</h2>
+  <pre><code>// Check console output below or scroll to bottom of page
+function makeCounter() {
+  let count = 0;
+  return function () {
+    count++;
+    return count;
+  };
+}
+const counter = makeCounter();
+console.log(counter()); // 1
+console.log(counter()); // 2
+
+function createGreeter(name) {
+  return function () {
+    return \`Hello, \${name}! Welcome\`;
+  };
+}
+const greet = createGreeter("Allen");
+console.log(greet());
+
+function multiplierFactory(factor) {
+  return function (number) {
+    return number * factor;
+  };
+}
+const double = multiplierFactory(2);
+console.log(double(5));
+
+function makeFibonacci() {
+  const cache = { 0: 0, 1: 1 };
+  return function fib(n) {
+    if (typeof n !== "number" || n < 0 || !Number.isInteger(n)) {
+      return "Enter a non-negative integer";
+    }
+    if (n in cache) {
+      return cache[n];
+    }
+    cache[n] = fib(n - 1) + fib(n - 2);
+    return cache[n];
+  };
+}
+const fib = makeFibonacci();
+console.log(fib(6)); // 8
+
+function createTodoModule() {
+  const todos = [];
+  return {
+    addTodo(task) {
+      if (!task || task.trim() === "") return;
+      todos.push(task.trim());
+    },
+    listTodos() {
+      return [...todos];
+    }
+  };
+}
+const myTodo = createTodoModule();
+myTodo.addTodo("Study closures");
+console.log(myTodo.listTodos());
+</code></pre>
+
+  <h2>Console Output:</h2>
+  <p>Open your browser console <strong>(F12 → Console)</strong> to view the output.</p>
+
+  <div class="output" id="output"></div>
+
+  <script>
+    const outputEl = document.getElementById("output");
+
+    function log(msg) {
+      console.log(msg);
+      outputEl.innerText += msg + "\n";
+    }
+
+    // Q1. Counter
+    function makeCounter() {
+      let count = 0;
+      return function () {
+        count++;
+        return count;
+      };
+    }
+    const counter = makeCounter();
+    log("Q1: Counter Output:");
+    log(counter());
+    log(counter());
+    log(counter());
+
+    // Q2. Greeter
+    function createGreeter(name) {
+      return function () {
+        return `Hello, ${name}! Welcome`;
+      };
+    }
+    const greetAllen = createGreeter("Allen");
+    const greetBobby = createGreeter("Bobby");
+    log("\nQ2: Greeter Output:");
+    log(greetAllen());
+    log(greetBobby());
+
+    // Q3. Multiplier
+    function multiplierFactory(factor) {
+      return function (number) {
+        return number * factor;
+      };
+    }
+    const double = multiplierFactory(2);
+    const triple = multiplierFactory(3);
+    const quadruple = multiplierFactory(4);
+    log("\nQ3: Multiplier Output:");
+    log("double(5) = " + double(5));
+    log("triple(5) = " + triple(5));
+    log("quadruple(5) = " + quadruple(5));
+
+    // Q4. Fibonacci
+    function makeFibonacci() {
+      const cache = { 0: 0, 1: 1 };
+      return function fib(n) {
+        if (typeof n !== "number" || n < 0 || !Number.isInteger(n)) {
+          return "Enter a non-negative integer";
+        }
+        if (n in cache) {
+          log(`Retrieving F(${n}) from cache`);
+          return cache[n];
+        }
+        log(`Computing F(${n})...`);
+        cache[n] = fib(n - 1) + fib(n - 2);
+        return cache[n];
+      };
+    }
+    const fibonacci = makeFibonacci();
+    log("\nQ4: Fibonacci Output:");
+    log("F(0) = " + fibonacci(0));
+    log("F(1) = " + fibonacci(1));
+    log("F(6) = " + fibonacci(6));
+    log("F(8) = " + fibonacci(8));
+    log("F(6) = " + fibonacci(6)); // cached
+    log("F(-2) = " + fibonacci(-2)); // invalid
+    log("F(3.5) = " + fibonacci(3.5)); // invalid
+
+    // Q5. Todo Module
+    function createTodoModule() {
+      const todos = [];
+      return {
+        addTodo(task) {
+          if (typeof task !== "string" || task.trim() === "") {
+            log("Invalid: provide a non-empty string");
+            return;
+          }
+          todos.push(task.trim());
+          log(`Added: "${task.trim()}"`);
+        },
+        removeTodo(index) {
+          if (!Number.isInteger(index) || index < 0 || index >= todos.length) {
+            log("Invalid index: Cannot remove");
+            return;
+          }
+          const removed = todos.splice(index, 1);
+          log(`Removed: "${removed[0]}"`);
+        },
+        listTodos() {
+          return [...todos];
+        },
+        clearTodos() {
+          todos.length = 0;
+          log("All cleared");
+        },
+      };
+    }
+    const myTodo = createTodoModule();
+    log("\nQ5: Todo Module Output:");
+    myTodo.addTodo("Buy groceries");
+    myTodo.addTodo("Walk the dog");
+    myTodo.addTodo(""); // invalid
+    myTodo.addTodo("   "); // invalid
+    log("Current Todos: " + myTodo.listTodos());
+    myTodo.removeTodo(1);
+    myTodo.removeTodo(5); // invalid index
+    myTodo.removeTodo(-1); // negative index
+    log("After removal: " + myTodo.listTodos());
+    myTodo.clearTodos();
+    log("Final Todos: " + myTodo.listTodos());
+    log("Direct access to todos? " + myTodo.todos); // undefined
+  </script>
+</body>
+</html>
