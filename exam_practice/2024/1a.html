@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translate</title>
+</head>
+<body>
+    <input type = "text" placeholder = "enter text" id="rov"/>
+    <button onclick="Translate()">translate</button>
+    <p id="result"></p>
+</body>
+<script>
+    function Translate(){
+        var str = document.getElementById("rov").value.toLowerCase();
+        let res="";
+        for(let i =0 ; i<str.length ; i++){
+            if("aeiou".includes(str[i]) || str[i]==" "){
+                res+=str[i];
+            }
+            else{
+                res+=str[i]+"o"+str[i];
+            }
+        }
+        document.getElementById("result").innerHTML = res;
+        }
+</script>
+</html>

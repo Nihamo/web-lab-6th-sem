@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>student details</title>
+</head>
+<body>
+    USN: <input type="text" id="usn"><br>
+    Subject Code<input type="text" id="subcode"><br>
+    Subject name:<input type="text" id="subname"><br>
+    Cie marks:<input type="number" id="marks"><br>
+    SEE marks:<input type="number" id="seemarks"><br>
+    <button onclick="showStudents()">show student details </button>
+    
+    <div id="output"></div>
+
+    <script>
+        function Student(usn,subcode,subname,marks,seemarks){
+            let cie = marks;
+            let see = seemarks;
+
+            return{
+                getDetails: function() {
+                    return{
+                        usn: usn,
+                        subcode:subcode,
+                        subname:subname
+                    };
+                },
+                getTotalMarks: function(){
+                    return cie + see;
+                },
+                displayDetails: function(){
+                    const details = this.getDetails();
+                    let result = "usn: "+ details.usn + "<br>"+
+                    "subject code: "+ details.subcode + "<br>"+
+                    "subject name: "+ details.subname + "<br>"+
+                    "total marks: "+ this.getTotalMarks();
+                    document.getElementById("output").innerHTML = result;
+                }
+            };
+        }
+
+        function showStudents(){
+            const usn = document.getElementById("usn").value;
+            const subcode = document.getElementById("subcode").value;
+            const subname = document.getElementById("subname").value;
+            const marks = parseInt(document.getElementById("marks").value);
+            const seemarks = parseInt(document.getElementById("seemarks").value);
+
+            const student = Student(usn,subcode,subname,marks,seemarks);
+            student.displayDetails();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+      enter a number:
+      <input type="number" id="num"><br>
+      <button onclick="getMonth()">get month name</button><br>
+      <p id="result"></p>
+      
+      <script>
+        function Month(inp){
+          const list=["jan","feb","mar","apr","may","jun","july","aug","sept","oct","nov","dec"];
+          
+          const convert = function(){
+            if(isNaN(inp) || inp<1 || inp>12){
+              return "bad number";
+            }
+            return list[inp-1];
+          }
+          
+          return convert
+        }
+        
+        
+        function getMonth(){
+          const inp = Math.floor(document.getElementById("num").value);
+          const getMonthName = Month(inp);
+          const result = getMonthName();
+          document.getElementById("result").textContent = result;
+        }
+      </script>
+  </body>
+</html>

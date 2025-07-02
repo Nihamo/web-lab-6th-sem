@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>plural</title>
+</head>
+<body>
+    <input type="text" placeholder = "enter the noun" id="noun"/><br>
+    <input type="number" placeholder = "enter the number" id="num"/><br>
+    <button onclick="Pluralize()">Pluralize it</button>
+    <p id="result"></p>
+    <script>
+        function Pluralize(){
+            var noun = document.getElementById("noun").value;
+            var num = parseInt(document.getElementById("num").value);
+            let result = "";
+            if(isNaN(num)){
+                result = "insert valid no";
+            }
+            else if(noun === "sheep"){
+                result = num +" "+ "sheep";
+            }
+            else if(noun === "geese" && num>1){
+                result = num + " "+"goose";
+            }
+            else if(num === 1){
+                result = num + " "+noun;
+            }
+            else{
+                result =num + " " + noun +"s";
+            }
+
+            document.getElementById("result").textContent = result;
+        }
+    </script>
+</body>
+</html>
