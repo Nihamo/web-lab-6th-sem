@@ -1,0 +1,24 @@
+<html>
+<body>
+  <h3>Add Hospital</h3>
+  <form action="/admit" method="post">
+    <input name="Hospital_ID" placeholder="Hospital ID" required><br>
+    <input name="Name" placeholder="Name" required><br>
+    <input name="Location" placeholder="Location" required><br>
+    <input name="Total_Beds" placeholder="Total Beds" type="number" required><br>
+    <input name="Occupied_Beds" placeholder="Occupied Beds" type="number" required><br>
+    <button type="submit">Add Hospital</button>
+  </form>
+
+  <h3>Admit Patient</h3>
+  <form action="/admit" method="post">
+    <input name="Hospital_ID" placeholder="Hospital ID" required><br>
+    <button type="submit">Admit</button>
+  </form>
+
+  <h3>Show Hospitals with less than 10 Beds</h3>
+  <form action="/critical" method="get">
+    <button type="submit">View</button>
+  </form>
+</body>
+</html>
