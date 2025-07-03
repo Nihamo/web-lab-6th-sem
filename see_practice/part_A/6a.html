@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="react/axios.min.js"></script>
+    <script src="react/babel.min.js"></script>
+    <script src="react/react.development.js"></script>
+    <script src="react/react-dom.development.js"></script>
+    <script src="react/prop-types.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        class Q6a extends React.Component{
+            constructor(props){
+                super(props);
+                this.state={
+                    data:""
+                };
+            }
+
+            onUpdate=(e)=>{
+                this.setState({data:e.target.value});
+            }
+
+            render(){
+                return(
+                    <form>
+                        <div>
+                            enter username:
+                            <input type="text"
+                            value={this.state.data}
+                            onChange={this.onUpdate.bind(this)}
+                            ></input>
+                            <h1>{this.state.data}</h1>
+                        </div>
+                        </form>
+                       
+                        );    
+        }
+    }
+
+    ReactDOM.render(<Q6a/>,document.getElementById("root"));
+    </script>
+</body>
+</html>
