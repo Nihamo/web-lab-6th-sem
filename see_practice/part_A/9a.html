@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>not bad</title>
+</head>
+<body>
+    write a senctence:<input type = "text" id="sen"><br>
+    <button onclick="changes()">change</button>
+    <div id="res"></div>
+
+    <script>
+        function notBad(sen){
+            const not = sen.indexOf("not");
+            const bad = sen.indexOf("bad");
+            if(not!=-1 && bad != -1 && bad>not){
+                return sen.slice(0,not) + "good" + sen.slice(bad+3);
+            }
+            return sen;
+        }
+
+        function changes(){
+            const sen = document.getElementById("sen").value;
+            const result = notBad(sen);
+            document.getElementById("res").textContent = result;
+        }
+    </script>
+</body>
+</html>

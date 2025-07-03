@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pluralizing</title>
+</head>
+<body>
+    enter the no.<input type = "number" id="num"><br>
+    enter the word:<input type = "text" id ="word"><br>
+    <button onclick="PluralizeWord()">pluralize</button>
+    <div id="result"></div>
+
+    <script>
+        function pluralize(word,num){
+            irreg = {"child":"children","sheep":"sheep","goose":"geese","person":"people"};
+
+            let pnoun;
+
+            if(irreg[word]){
+                pnoun =irreg[word];
+            }else if(num == 1){
+                pnoun = word;
+            }else{
+                pnoun = word + "s";
+            }
+
+            return num + " "+ pnoun;
+        }
+
+        function PluralizeWord(){
+            const num = parseInt(document.getElementById("num").value);
+            const word = document.getElementById("word").value.trim();
+            const result = pluralize(word,num);
+            document.getElementById("result").innerHTML = result;
+        }
+    </script>
+</body>
+</html>
