@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Complaint Management</title>
+</head>
+<body>
+
+  <h2>Submit Complaint</h2>
+  <form action="/complaints" method="POST">
+    <label>ID:</label>
+    <input name="complaint_id" required><br>
+    <label>Name:</label>
+    <input name="username" required><br>
+    <label>Issue:</label>
+    <input name="issue" required><br>
+    <input name="status" value="Pending" readonly><br>
+    <button type="submit">Submit</button>
+  </form>
+
+  <h2>Update Status</h2>
+  <form id="updateForm">
+    <label>ID:</label>
+    <input id="updateId" required><br>
+    <label>Status:</label>
+    <select id="updateStatus">
+      <option value="In Progress">In Progress</option>
+      <option value="Resolved">Resolved</option>
+    </select><br>
+    <button type="submit">Update</button>
+  </form>
+
+  <h2>View Complaints</h2>
+  <button onclick="loadPending()">Pending Only</button>
+  <button onclick="loadAll()">Show All</button>
+  <div id="result"></div>
+
+  <script>
+    // Update complaint status
+    document.getElementById("updateForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const id = document.getElementById("updateId").value;
+      const status = document.getElementById("updateStatus").value;
+
+      const res = await fetch(`/complaints/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status })
+      });
+
+      alert(await res.text());
+    });
+
+    // Load pending complaints
+    async function loadPending() {
+      const res = await fetch("/complaints/pending");
+      const data = await res.json();
+      displayList(data, "Pending Complaints");
+    }
+
+    // Load all complaints
+    async function loadAll() {
+      const res = await fetch("/complaints/all"); 
+      const data = await res.json();
+      displayList(data, "All Complaints");
+    }
+
+    // Display function
+    
+    function displayList(data, title) {
+        const result = document.getElementById("result");
+        result.innerHTML = `<h3>${title}</h3>`;
+
+        if (data.length === 0) {
+            result.innerHTML += "<p>No complaints.</p>";
+            return;
+        }
+
+        let output = "<ul>";
+        data.forEach(c => {
+            output += `<li>${c.complaint_id} - ${c.username} - ${c.issue} - ${c.status}</li>`;
+        });
+        output += "</ul>";
+
+        result.innerHTML += output;
+        }
+
+  </script>
+
+</body>
+</html>
