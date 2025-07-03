@@ -1,69 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Course Enrollment</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
 <body>
-  <h2>Course Enrollment Form</h2>
-  <form action="/enroll" method="POST">
-    <label>Student ID:</label>
-    <input type="text" name="student_id" required><br>
-
-    <label>Name:</label>
-    <input type="text" name="name" required><br>
-
-    <label>Course Name:</label>
-    <input type="text" name="course_name" required><br>
-
-    <label>Duration (weeks):</label>
-    <input type="number" name="duration" required><br>
-
-    <label>Status:</label>
-    <input type="text" name="status" value="active" required><br>
-
-    <button type="submit">Enroll</button>
+  <h2>insert student detials</h2>
+  <form action="/submit" method="post">
+    student id: <input type="text" name="id"><br>
+    name:<input type="text" name="name"><br>
+    company:<input type="text" name="company"><br>
+    duration:<input type="text" name="duration"><br>
+    status:<input type="text" name="status"><br>
+    <button type="submit">submit</button>
   </form>
 
   <hr>
+  <h2>display students interning infosys</h2><br>
+  <button onclick="studentIn()">show</button><br>
+  <div id="result1"></div>
+  <hr>
 
-  <h2>Mark Enrollment as Completed</h2>
+  <h2>updating status</h2>
   <form id="updateForm">
-    <label>Student ID:</label>
-    <input type="text" id="updateStudentId"><br>
-
-    <label>OR Course Name:</label>
-    <input type="text" id="updateCourseName"><br>
-
-    <button type="submit">Mark as Completed</button>
+    student id:<input type="text" id="updateId" ><br>
+    <button type="submit">mark as completed</button>
   </form>
 
   <script>
-    document.getElementById('updateForm').addEventListener('submit', async function (e) {
+    document.getElementById("updateForm").addEventListener('submit',async function (e){
       e.preventDefault();
 
-      const student_id = document.getElementById('updateStudentId').value.trim();
-      const course_name = document.getElementById('updateCourseName').value.trim();
+      const id = document.getElementById("updateId").value;
 
-      const data = {};
-      if (student_id) data.student_id = student_id;
-      else if (course_name) data.course_name = course_name;
-      else return alert("Please provide either Student ID or Course Name");
-
-      try {
-        const response = await fetch('/complete', {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data)
-        });
-
-        const text = await response.text();
-        alert(text);
-      } catch (err) {
-        alert('Failed to update enrollment');
-      }
+      const res = await fetch("/updateStatus",{
+        method:"PUT",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({id: id})
+      });
+      const text = await res.text();
+      alert(text);
     });
+    
+    async function studentIn(){
+      const res = await fetch('/infosys');
+      const html = await res.text();
+      document.getElementById("result1").innerHTML = html;
+    };
   </script>
 </body>
 </html>
