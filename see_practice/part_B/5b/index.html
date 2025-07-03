@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/submit" method="post">
+        name:<input type="text" name="name" required><br>
+        usn:<input type="text" name="usn" required><br>
+        dept:<input type="text" name="dept" required><br>
+        grade:<input type="text" name="grade" required><br>
+        <button type="submit">submit</button>
+    </form>
+
+    <hr>
+
+    <h2>displaying all student</h2>
+    <button onclick="displayStudent()">show</button>
+    <div id="result"></div>
+    <hr>
+
+    <h2>updating grades</h2>
+    <form id="updateForm">
+        name:<input type="text" id="updateName"><br>
+        updated grade:<input type="text" id="updateGrade"><br>
+        <button type="submit">update</button>
+    </form>
+
+    <script>
+        document.getElementById("updateForm").addEventListener("submit",async function (e){
+            e.preventDefault();
+            const updatename = document.getElementById("updateName").value;
+            const updategrade = document.getElementById("updateGrade").value;
+            const result = await fetch("/update",{
+                method:"PUT",
+                headers:{"Content-Type":"application/json"},
+                body: JSON.stringify({name:updatename,grade:updategrade})
+            });
+            const text = await result.text();
+            alert(text);
+        });
+
+        async function displayStudent(){
+            const results = await fetch("/display");
+            const html =await results.text();
+            document.getElementById("result").innerHTML = html;
+        };
+    </script>
+</body>
+</html>
