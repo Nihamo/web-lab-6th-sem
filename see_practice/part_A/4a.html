@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="react/react.development.js"></script>
+    <script src="react/react-dom.development.js"></script>
+    <script src="react/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        class Q4a extends React.Component{
+            constructor(){
+                super();
+                this.state={
+                    name:"abc",
+                    address:"add",
+                    company:"com",
+                    newName:"",
+                    newAddress:""
+                };
+            }
+
+            happenChange=(e)=>{
+                this.setState({
+                    [e.target.name]:e.target.value
+                });
+            }
+
+            displayDetails = () =>{
+                this.setState({
+                    name: this.state.newName,
+                    address:this.state.newAddress
+                });
+            }
+
+            render(){
+                return(
+                    <div>
+                        <p>name:{this.state.name}</p>
+                        <p>add:{this.state.address}</p>
+                        <p>company:{this.state.company}</p>
+
+                        <input 
+                            type="text"
+                            name="newName"
+                            value={this.state.newName}
+                            onChange={this.happenChange}
+                            placeholder="new name"
+                            />
+                        <input
+                        type="text"
+                        name="newAddress"
+                        value={this.state.newAddress}
+                        onChange={this.happenChange}
+                        placeholder="new address"
+                        />
+
+                        <button onClick= {this.displayDetails}>change</button>
+                    </div>
+                );
+            }
+        }
+
+        ReactDOM.render(<Q4a/>,document.getElementById("root"));
+    </script>
+</body>
+</html>
